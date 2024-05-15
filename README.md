@@ -5,6 +5,11 @@ a file repersents a crystal which gets cut into smaller shards which are 4kB in 
 why ?  
 it just sounds nice ig.. and it describes how this project works at its core  
 
+# Important Notice !  
+were iz da cod ?  
+
+there is no code on the master branch instead each branch implements Shard to a certain platform or language so you'll have to browse the branches :3  
+
 # The Components  
 - server:  
 an app to serve and convert files into its repective shard form  
@@ -36,6 +41,7 @@ uhh.. i have it on my goog tasks but uhh.. ill write some things ig..
 ```
 
 # You Like Neko?  
-you can always show your support by chatting with me on discord or star-ing etc.. if you'd like to donate me money please send it to a chariy instead  
+you can always show your support by reaching out on my email or my mastodon account (@nekomimi@sakurajima.moe) or star-ing etc..  
+if you'd like to donate me money please send it to a chariy instead  
 
 you can always find my links at my Personal GitHub repo or my website  
