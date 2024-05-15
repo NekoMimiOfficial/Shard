@@ -1,6 +1,7 @@
 import sqlite3
 import pickle
 import random
+from socket import socket
 
 def randomName():
     choices = 'abc123def456XYZ789Q0'
@@ -90,3 +91,17 @@ class DataBase:
         rows = self.head.fetchall()
         return rows[id-1]
 
+# clean this later please
+class ErrorEmmiter:
+    def version(self, sock: socket):
+        packet = b''.join([
+            int(1).to_bytes(1),
+            int(1).to_bytes(1)
+        ])
+        pckLen = len(packet)
+        payload = b''.join([
+            int(70).to_bytes(1),
+            int(pckLen).to_bytes(1),
+            packet
+        ])
+        sock.send(payload)

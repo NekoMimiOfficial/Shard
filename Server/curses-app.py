@@ -1,5 +1,5 @@
-import common
 import socket
+import common
 import threading
 
 class Server:
@@ -18,12 +18,29 @@ class Server:
             thread = threading.Thread(target=self.worker, args=[conn])
             thread.start()
 
-    def lexDL(self, connection: socket.socket, pckSize):
-        shardURI = connection.recv(pckSize)
-        shardURI = shardURI.decode()
-        print(*shardURI,)
-        self.runLock = False
+    def downloadResolver(self, connection: socket.socket, job, id, issue):
+        pass
 
+    def lexDL(self, connection: socket.socket, pckSize):
+        packet = connection.recv(pckSize)
+        shardURI = packet.decode()
+
+        # oh boi dis lixer gorjus
+        # i literlly just came up with it in 2 mins
+        buffer = ''
+        com = ''
+        ident = 0
+        for char in shardURI:
+            if not char == ':':
+                if ident > 0:
+                    com += char
+                buffer += char
+            else:
+                ident += 1
+
+        synType = ('reserved', 'child', 'object')
+        return self.downloadResolver(connection, synType[ident], buffer, com)
+        
     def worker(self, connection: socket.socket):
         sockVer, cmd = connection.recv(2)
         print(sockVer)
@@ -36,7 +53,7 @@ class Server:
             case 1:
                 pckSize = int.from_bytes(connection.recv(4))
                 print(pckSize)
-                self.lexDL(connection, pckSize)
+                dlObjHandle = self.lexDL(connection, pckSize)
 
 server = Server()
 server.start()
